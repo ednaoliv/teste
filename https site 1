@@ -1,0 +1,63 @@
+using System;
+using System.Windows.Forms;
+
+namespace CadastrosBasicos.Views
+{
+    public partial class FormPrincipal : Form
+    {
+        public FormPrincipal()
+        {
+            InitializeComponent();
+        }
+
+        private void timer_Tick(object sender, EventArgs e)
+        {
+            toolStripStatusLabelDataHora.Text = $"{DateTime.Now.ToString("HH:mm - dd/MM/yyyy")}";
+        }
+
+        private void FormPrincipal_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (MessageBox.Show("Deseja sair da aplicação?",
+                                "Sistema de Cadastros Básicos",
+                                MessageBoxButtons.YesNo,
+                                MessageBoxIcon.Question) == DialogResult.No)
+            {
+                e.Cancel = true;
+            }
+        }
+
+        private void toolStripMenuItemSair_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+       private void toolStripButtonSair_Click(object sender, EventArgs e)
+        {
+            toolStripMenuItemSair.PerformClick();
+        }
+
+        private void toolStripMenuItemCadastrarFornecedor_Click(object sender, EventArgs e)
+        {
+            var cadastrarFornecedor = new FormCadastrarFornecedor();
+
+            cadastrarFornecedor.ShowDialog();
+        }
+
+        private void toolStripButtonCadastrarFornecedor_Click(object sender, EventArgs e)
+        {
+            toolStripMenuItemCadastrarFornecedor.PerformClick();
+        }
+
+        private void toolStripMenuItemListarFornecedor_Click(object sender, EventArgs e)
+        {
+            var listarFornecedor = new FormListarFornecedor();
+
+            listarFornecedor.ShowDialog();
+        }
+
+        private void toolStripButtonListarFornecedor_Click(object sender, EventArgs e)
+        {
+            toolStripMenuItemListarFornecedor.PerformClick();
+        }
+    }
+}
